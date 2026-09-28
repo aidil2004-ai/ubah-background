@@ -2,10 +2,7 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Studio Tools & PDF Converter</title>
 
     <!-- Tailwind CSS CDN -->
@@ -16,16 +13,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <!-- Google MediaPipe Selfie Segmentation AI Engine -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/selfie_segmentation.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/selfie_segmentation.js" crossorigin="anonymous"></script>
 
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap");
 
-      html,
-      body {
+      html, body {
         width: 100%;
         max-width: 100vw;
         overflow-x: hidden !important;
@@ -55,14 +48,7 @@
 
       /* Tombol Emas Premium (Gold Menu) */
       .btn-gold {
-        background: linear-gradient(
-          135deg,
-          #bf953f 0%,
-          #fcf6ba 25%,
-          #b38728 50%,
-          #fbf5b7 75%,
-          #aa771c 100%
-        );
+        background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
         color: #1a1200;
         font-weight: 800;
         box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
@@ -76,13 +62,7 @@
         box-shadow: 0 6px 20px rgba(212, 175, 55, 0.55);
       }
       .btn-gold.active-tab {
-        background: linear-gradient(
-          135deg,
-          #ffe066 0%,
-          #fcf6ba 30%,
-          #d4af37 70%,
-          #aa771c 100%
-        );
+        background: linear-gradient(135deg, #ffe066 0%, #fcf6ba 30%, #d4af37 70%, #aa771c 100%);
         border-color: #ffffff;
         box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
       }
@@ -104,12 +84,7 @@
 
       /* Glowing Text Gold */
       .text-gold-glow {
-        background: linear-gradient(
-          135deg,
-          #ffe066 0%,
-          #d4af37 50%,
-          #f3e5ab 100%
-        );
+        background: linear-gradient(135deg, #ffe066 0%, #d4af37 50%, #f3e5ab 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
@@ -165,9 +140,7 @@
       }
     </style>
   </head>
-  <body
-    class="min-h-screen relative flex flex-col overflow-x-hidden selection:bg-amber-500 selection:text-black"
-  >
+  <body class="min-h-screen relative flex flex-col overflow-x-hidden selection:bg-amber-500 selection:text-black">
     <!-- Toast Container Notification -->
     <div id="toast-container"></div>
 
@@ -176,22 +149,14 @@
 
     <div class="relative z-10 flex flex-col min-h-screen w-full">
       <!-- HEADER NAVBAR -->
-      <header
-        class="w-full border-b border-amber-500/20 glass-card sticky top-0 z-30"
-      >
-        <div
-          class="max-w-6xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3"
-        >
+      <header class="w-full border-b border-amber-500/20 glass-card sticky top-0 z-30">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div class="flex items-center gap-2.5">
-            <div
-              class="p-2 bg-gradient-to-tr from-amber-400 via-amber-500 to-yellow-600 rounded-xl shadow-lg shadow-amber-500/30"
-            >
+            <div class="p-2 bg-gradient-to-tr from-amber-400 via-amber-500 to-yellow-600 rounded-xl shadow-lg shadow-amber-500/30">
               <i data-lucide="sparkles" class="w-5 h-5 text-slate-950"></i>
             </div>
             <div>
-              <h1
-                class="text-base sm:text-lg font-black text-gold-glow leading-tight"
-              >
+              <h1 class="text-base sm:text-lg font-black text-gold-glow leading-tight">
                 Studio Tools & PDF Converter
               </h1>
               <p class="text-[10px] sm:text-xs text-amber-200/80 font-medium">
@@ -223,82 +188,35 @@
       </header>
 
       <!-- MAIN WORKSPACE -->
-      <main
-        class="flex-1 max-w-6xl w-full mx-auto px-4 py-6 flex flex-col gap-6"
-      >
+      <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-6 flex flex-col gap-6">
+        
         <!-- MENU 1: GANTI BACKGROUND FOTO -->
-        <section
-          id="tab-bg-changer"
-          class="tab-content active flex-col lg:flex-row gap-6"
-        >
+        <section id="tab-bg-changer" class="tab-content active flex-col lg:flex-row gap-6">
           <div class="w-full lg:w-80 flex flex-col gap-4">
-            <div
-              class="glass-card p-4 rounded-2xl shadow-xl flex flex-col gap-3"
-            >
+            <div class="glass-card p-4 rounded-2xl shadow-xl flex flex-col gap-3">
               <h2 class="text-sm font-bold text-white flex items-center gap-2">
-                <i data-lucide="upload" class="w-4 h-4 text-amber-400"></i> 1.
-                Unggah Foto
+                <i data-lucide="upload" class="w-4 h-4 text-amber-400"></i> 1. Unggah Foto
               </h2>
-              <label
-                class="border-2 border-dashed border-slate-700 hover:border-amber-400 rounded-xl p-4 text-center cursor-pointer bg-slate-900/50 transition"
-              >
-                <input
-                  type="file"
-                  id="bg-file-input"
-                  accept="image/*"
-                  class="hidden"
-                  onchange="handleBgUpload(event)"
-                />
-                <i
-                  data-lucide="image-plus"
-                  class="w-6 h-6 text-amber-400 mx-auto"
-                ></i>
-                <span
-                  class="text-xs font-semibold text-slate-200 block mt-1"
-                  id="bg-file-name"
-                  >Pilih Foto Utama</span
-                >
+              <label class="border-2 border-dashed border-slate-700 hover:border-amber-400 rounded-xl p-4 text-center cursor-pointer bg-slate-900/50 transition">
+                <input type="file" id="bg-file-input" accept="image/*" class="hidden" onchange="handleBgUpload(event)" />
+                <i data-lucide="image-plus" class="w-6 h-6 text-amber-400 mx-auto"></i>
+                <span class="text-xs font-semibold text-slate-200 block mt-1" id="bg-file-name">Pilih Foto Utama</span>
               </label>
             </div>
 
-            <div
-              class="glass-card p-4 rounded-2xl shadow-xl flex flex-col gap-3"
-            >
+            <div class="glass-card p-4 rounded-2xl shadow-xl flex flex-col gap-3">
               <h2 class="text-sm font-bold text-white flex items-center gap-2">
-                <i data-lucide="palette" class="w-4 h-4 text-amber-400"></i> 2.
-                Pilih Warna Latar Baru
+                <i data-lucide="palette" class="w-4 h-4 text-amber-400"></i> 2. Pilih Warna Latar Baru
               </h2>
               <div class="grid grid-cols-4 gap-2">
-                <button
-                  type="button"
-                  onclick="setBgColor('#2563eb', this)"
-                  class="color-btn active h-9 rounded-lg bg-blue-600 border border-white/30 transition"
-                ></button>
-                <button
-                  type="button"
-                  onclick="setBgColor('#ef4444', this)"
-                  class="color-btn h-9 rounded-lg bg-red-600 border border-white/30 transition"
-                ></button>
-                <button
-                  type="button"
-                  onclick="setBgColor('#eab308', this)"
-                  class="color-btn h-9 rounded-lg bg-yellow-500 border border-white/30 transition"
-                ></button>
-                <button
-                  type="button"
-                  onclick="setBgColor('#ffffff', this)"
-                  class="color-btn h-9 rounded-lg bg-white border border-white/30 transition"
-                ></button>
+                <button type="button" onclick="setBgColor('#2563eb', this)" class="color-btn active h-9 rounded-lg bg-blue-600 border border-white/30 transition"></button>
+                <button type="button" onclick="setBgColor('#ef4444', this)" class="color-btn h-9 rounded-lg bg-red-600 border border-white/30 transition"></button>
+                <button type="button" onclick="setBgColor('#eab308', this)" class="color-btn h-9 rounded-lg bg-yellow-500 border border-white/30 transition"></button>
+                <button type="button" onclick="setBgColor('#ffffff', this)" class="color-btn h-9 rounded-lg bg-white border border-white/30 transition"></button>
               </div>
               <div class="flex items-center gap-2 mt-1">
                 <label class="text-xs text-slate-300">Warna Custom:</label>
-                <input
-                  type="color"
-                  id="custom-bg-color"
-                  value="#2563eb"
-                  onchange="setBgColor(this.value, null)"
-                  class="w-8 h-8 rounded border-0 cursor-pointer bg-transparent"
-                />
+                <input type="color" id="custom-bg-color" value="#2563eb" onchange="setBgColor(this.value, null)" class="w-8 h-8 rounded border-0 cursor-pointer bg-transparent" />
               </div>
 
               <!-- TOMBOL PROSES GANTI BACKGROUND -->
@@ -309,30 +227,16 @@
                 onclick="processBgChanger()"
                 class="btn-gold w-full py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 mt-2"
               >
-                <i data-lucide="wand2" class="w-4 h-4"></i> Hapus & Ganti
-                Background AI
+                <i data-lucide="wand2" class="w-4 h-4"></i> Hapus & Ganti Background AI
               </button>
             </div>
           </div>
 
-          <div
-            class="flex-1 glass-card p-5 rounded-2xl flex flex-col items-center justify-center min-h-[320px]"
-          >
-            <p id="bg-status-hint" class="text-xs text-slate-400 mb-2">
-              Unggah foto terlebih dahulu untuk melihat pratinjau
-            </p>
-            <canvas
-              id="bg-canvas-preview"
-              class="max-w-full h-auto rounded-lg shadow-2xl bg-slate-900 border border-slate-800 hidden"
-            ></canvas>
-
-            <button
-              type="button"
-              onclick="downloadBgResult()"
-              id="btn-dl-bg"
-              disabled
-              class="btn-gold px-6 py-2.5 rounded-xl text-xs flex items-center gap-2 mt-4"
-            >
+          <div class="flex-1 glass-card p-5 rounded-2xl flex flex-col items-center justify-center min-h-[320px]">
+            <p id="bg-status-hint" class="text-xs text-slate-400 mb-2">Unggah foto terlebih dahulu untuk melihat pratinjau</p>
+            <canvas id="bg-canvas-preview" class="max-w-full h-auto rounded-lg shadow-2xl bg-slate-900 border border-slate-800 hidden"></canvas>
+            
+            <button type="button" onclick="downloadBgResult()" id="btn-dl-bg" disabled class="btn-gold px-6 py-2.5 rounded-xl text-xs flex items-center gap-2 mt-4">
               <i data-lucide="download" class="w-4 h-4"></i> Unduh Hasil Foto
             </button>
           </div>
@@ -340,92 +244,43 @@
 
         <!-- MENU 2: KONVERSI SEMUA FILE KE PDF -->
         <section id="tab-pdf-converter" class="tab-content flex-col gap-5">
-          <div
-            class="glass-card p-6 rounded-2xl shadow-xl flex flex-col items-center justify-center border border-amber-500/30"
-          >
-            <h2
-              class="text-base sm:text-lg font-bold text-white flex items-center gap-2 mb-2"
-            >
-              <i data-lucide="file-plus" class="w-5 h-5 text-amber-400"></i>
-              Ubah Semua Format File ke PDF
+          <div class="glass-card p-6 rounded-2xl shadow-xl flex flex-col items-center justify-center border border-amber-500/30">
+            <h2 class="text-base sm:text-lg font-bold text-white flex items-center gap-2 mb-2">
+              <i data-lucide="file-plus" class="w-5 h-5 text-amber-400"></i> Ubah Semua Format File ke PDF
             </h2>
             <p class="text-xs text-slate-300 text-center max-w-md mb-4">
-              Pilih satu atau beberapa file gambar/dokumen untuk dikonversi
-              menjadi dokumen PDF berkualitas tinggi secara instan.
+              Pilih satu atau beberapa file gambar/dokumen untuk dikonversi menjadi dokumen PDF berkualitas tinggi secara instan.
             </p>
 
-            <label
-              class="border-2 border-dashed border-amber-500/50 hover:border-amber-400 rounded-2xl p-6 text-center cursor-pointer bg-amber-500/5 hover:bg-amber-500/10 transition w-full max-w-lg"
-            >
-              <input
-                type="file"
-                id="pdf-file-input"
-                multiple
-                class="hidden"
-                onchange="handlePdfFiles(event)"
-              />
-              <i
-                data-lucide="files"
-                class="w-10 h-10 text-amber-400 mx-auto mb-2"
-              ></i>
-              <span class="text-sm font-bold text-white block"
-                >Pilih File dari Perangkat</span
-              >
-              <span class="text-xs text-slate-400"
-                >Mendukung JPG, PNG, WEBP, TXT</span
-              >
+            <label class="border-2 border-dashed border-amber-500/50 hover:border-amber-400 rounded-2xl p-6 text-center cursor-pointer bg-amber-500/5 hover:bg-amber-500/10 transition w-full max-w-lg">
+              <input type="file" id="pdf-file-input" multiple class="hidden" onchange="handlePdfFiles(event)" />
+              <i data-lucide="files" class="w-10 h-10 text-amber-400 mx-auto mb-2"></i>
+              <span class="text-sm font-bold text-white block">Pilih File dari Perangkat</span>
+              <span class="text-xs text-slate-400">Mendukung JPG, PNG, WEBP, TXT</span>
             </label>
           </div>
 
-          <div
-            id="pdf-file-list"
-            class="glass-card p-4 rounded-2xl hidden flex-col gap-3"
-          >
-            <h3
-              class="text-xs font-bold text-amber-300 uppercase tracking-wider"
-            >
-              Daftar File Siap Konversi:
-            </h3>
-            <div
-              id="pdf-items-container"
-              class="flex flex-col gap-2 max-h-60 overflow-y-auto"
-            ></div>
-            <button
-              type="button"
-              onclick="convertToPdf()"
-              class="btn-gold w-full py-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2 mt-2"
-            >
-              <i data-lucide="file-check" class="w-4 h-4"></i> Konversi & Unduh
-              Dokumen PDF
+          <div id="pdf-file-list" class="glass-card p-4 rounded-2xl hidden flex-col gap-3">
+            <h3 class="text-xs font-bold text-amber-300 uppercase tracking-wider">Daftar File Siap Konversi:</h3>
+            <div id="pdf-items-container" class="flex flex-col gap-2 max-h-60 overflow-y-auto"></div>
+            <button type="button" onclick="convertToPdf()" class="btn-gold w-full py-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2 mt-2">
+              <i data-lucide="file-check" class="w-4 h-4"></i> Konversi & Unduh Dokumen PDF
             </button>
           </div>
         </section>
 
         <!-- SECTION DUKUNGAN SAWERIA RESMI -->
-        <section
-          class="glass-card p-4 sm:p-5 rounded-2xl border border-amber-500/30 bg-gradient-to-r from-amber-950/30 via-slate-900/80 to-amber-950/30 flex flex-col sm:flex-row items-center justify-between gap-4"
-        >
+        <section class="glass-card p-4 sm:p-5 rounded-2xl border border-amber-500/30 bg-gradient-to-r from-amber-950/30 via-slate-900/80 to-amber-950/30 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div class="flex items-center gap-3 w-full sm:w-auto">
-            <div
-              class="p-2.5 bg-gradient-to-tr from-amber-400 to-yellow-600 rounded-xl shadow-md text-slate-950 flex-shrink-0"
-            >
+            <div class="p-2.5 bg-gradient-to-tr from-amber-400 to-yellow-600 rounded-xl shadow-md text-slate-950 flex-shrink-0">
               <i data-lucide="heart" class="w-5 h-5 fill-slate-950"></i>
             </div>
             <div>
-              <h3
-                class="text-xs sm:text-sm font-bold text-white flex items-center gap-1.5"
-              >
-                Dukung Pengembang
-                <span
-                  class="text-[9px] bg-amber-500/20 text-amber-300 border border-amber-500/40 px-2 py-0.2 rounded-full font-mono"
-                  >Saweria</span
-                >
+              <h3 class="text-xs sm:text-sm font-bold text-white flex items-center gap-1.5">
+                Dukung Pengembang <span class="text-[9px] bg-amber-500/20 text-amber-300 border border-amber-500/40 px-2 py-0.2 rounded-full font-mono">Saweria</span>
               </h3>
-              <p
-                class="text-[10px] sm:text-xs text-slate-300 mt-0.5 leading-snug"
-              >
-                Suka dengan layanan aplikasi ini? Dukungan Anda menjaga server
-                tetap berjalan gratis!
+              <p class="text-[10px] sm:text-xs text-slate-300 mt-0.5 leading-snug">
+                Suka dengan layanan aplikasi ini? Dukungan Anda menjaga server tetap berjalan gratis!
               </p>
             </div>
           </div>
@@ -437,10 +292,10 @@
             rel="noopener noreferrer"
             class="btn-gold w-full sm:w-auto px-5 py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 flex-shrink-0 text-center"
           >
-            <i data-lucide="coffee" class="w-4 h-4"></i> Traktir Kopi via
-            Saweria
+            <i data-lucide="coffee" class="w-4 h-4"></i> Traktir Kopi via Saweria
           </a>
         </section>
+
       </main>
     </div>
 
@@ -450,10 +305,7 @@
       /* ANIMATED BACKGROUND CANVAS */
       const bgCanvas = document.getElementById("bg-canvas");
       const bgCtx = bgCanvas.getContext("2d");
-      function resizeBg() {
-        bgCanvas.width = window.innerWidth;
-        bgCanvas.height = window.innerHeight;
-      }
+      function resizeBg() { bgCanvas.width = window.innerWidth; bgCanvas.height = window.innerHeight; }
       window.addEventListener("resize", resizeBg);
       resizeBg();
 
@@ -462,7 +314,7 @@
         y: Math.random() * bgCanvas.height,
         r: Math.random() * 2 + 0.5,
         speedX: (Math.random() - 0.5) * 0.4,
-        speedY: (Math.random() - 0.5) * 0.4,
+        speedY: (Math.random() - 0.5) * 0.4
       }));
 
       function animateBg() {
@@ -470,17 +322,12 @@
         bgCtx.fillStyle = "#060913";
         bgCtx.fillRect(0, 0, bgCanvas.width, bgCanvas.height);
 
-        particles.forEach((p) => {
-          p.x += p.speedX;
-          p.y += p.speedY;
-          if (p.x < 0) p.x = bgCanvas.width;
-          if (p.x > bgCanvas.width) p.x = 0;
-          if (p.y < 0) p.y = bgCanvas.height;
-          if (p.y > bgCanvas.height) p.y = 0;
-          bgCtx.beginPath();
-          bgCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          bgCtx.fillStyle = "rgba(212, 175, 55, 0.4)";
-          bgCtx.fill();
+        particles.forEach(p => {
+          p.x += p.speedX; p.y += p.speedY;
+          if (p.x < 0) p.x = bgCanvas.width; if (p.x > bgCanvas.width) p.x = 0;
+          if (p.y < 0) p.y = bgCanvas.height; if (p.y > bgCanvas.height) p.y = 0;
+          bgCtx.beginPath(); bgCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          bgCtx.fillStyle = "rgba(212, 175, 55, 0.4)"; bgCtx.fill();
         });
         requestAnimationFrame(animateBg);
       }
@@ -489,18 +336,14 @@
       /* TAB NAVIGATION CONTROLLER */
       function switchTab(event, tabId) {
         if (event) event.preventDefault();
-        document
-          .querySelectorAll(".tab-content")
-          .forEach((el) => el.classList.remove("active"));
-        document
-          .querySelectorAll(".btn-gold")
-          .forEach((el) => el.classList.remove("active-tab"));
-
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.btn-gold').forEach(el => el.classList.remove('active-tab'));
+        
         const targetTab = document.getElementById(`tab-${tabId}`);
         const targetNav = document.getElementById(`nav-${tabId}`);
         if (targetTab && targetNav) {
-          targetTab.classList.add("active");
-          targetNav.classList.add("active-tab");
+          targetTab.classList.add('active');
+          targetNav.classList.add('active-tab');
         }
       }
 
@@ -510,18 +353,8 @@
         const toast = document.createElement("div");
         toast.className = "toast-card";
 
-        let icon =
-          type === "success"
-            ? "check-circle"
-            : type === "error"
-              ? "alert-triangle"
-              : "info";
-        let color =
-          type === "success"
-            ? "text-emerald-400 border-emerald-500/30"
-            : type === "error"
-              ? "text-rose-400 border-rose-500/30"
-              : "text-amber-400 border-amber-500/30";
+        let icon = type === "success" ? "check-circle" : type === "error" ? "alert-triangle" : "info";
+        let color = type === "success" ? "text-emerald-400 border-emerald-500/30" : type === "error" ? "text-rose-400 border-rose-500/30" : "text-amber-400 border-amber-500/30";
 
         toast.classList.add(...color.split(" "));
         toast.innerHTML = `
@@ -536,51 +369,41 @@
         container.appendChild(toast);
         lucide.createIcons();
         setTimeout(() => toast.classList.add("show"), 10);
-        setTimeout(() => {
-          toast.classList.remove("show");
-          setTimeout(() => toast.remove(), 350);
-        }, 3200);
+        setTimeout(() => { toast.classList.remove("show"); setTimeout(() => toast.remove(), 350); }, 3200);
       }
 
       /* LOGIC MENU 1: GANTI BACKGROUND FOTO MENGGUNAKAN MEDIAPIPE AI SEGMENTATION */
       let bgImgObj = null;
-      let selectedBgColor = "#2563eb";
+      let selectedBgColor = '#2563eb';
       let selfieSegmentation = null;
 
       function initSegmentation() {
         if (window.SelfieSegmentation) {
           selfieSegmentation = new SelfieSegmentation({
-            locateFile: (file) =>
-              `https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/${file}`,
+            locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/${file}`
           });
           selfieSegmentation.setOptions({ modelSelection: 1 });
           selfieSegmentation.onResults(onSegmentationResults);
         }
       }
 
-      window.addEventListener("load", initSegmentation);
+      window.addEventListener('load', initSegmentation);
 
       function handleBgUpload(e) {
         const file = e.target.files[0];
         if (!file) return;
-        document.getElementById("bg-file-name").textContent = file.name;
-
+        document.getElementById('bg-file-name').textContent = file.name;
+        
         const reader = new FileReader();
         reader.onload = (evt) => {
           bgImgObj = new Image();
           bgImgObj.crossOrigin = "anonymous";
           bgImgObj.onload = () => {
-            renderOriginalPreview("bg-canvas-preview", bgImgObj);
-            document.getElementById("bg-status-hint").classList.add("hidden");
-            document
-              .getElementById("bg-canvas-preview")
-              .classList.remove("hidden");
-            document.getElementById("btn-process-bg").disabled = false;
-            showToast(
-              "info",
-              "Foto Berhasil Dimuat",
-              "Pilih warna latar lalu klik 'Hapus & Ganti Background AI'.",
-            );
+            renderOriginalPreview('bg-canvas-preview', bgImgObj);
+            document.getElementById('bg-status-hint').classList.add('hidden');
+            document.getElementById('bg-canvas-preview').classList.remove('hidden');
+            document.getElementById('btn-process-bg').disabled = false;
+            showToast("info", "Foto Berhasil Dimuat", "Pilih warna latar lalu klik 'Hapus & Ganti Background AI'.");
           };
           bgImgObj.src = evt.target.result;
         };
@@ -590,16 +413,14 @@
       function setBgColor(color, btnEl) {
         selectedBgColor = color;
         if (btnEl) {
-          document
-            .querySelectorAll(".color-btn")
-            .forEach((b) => b.classList.remove("active"));
-          btnEl.classList.add("active");
+          document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+          btnEl.classList.add('active');
         }
       }
 
       function renderOriginalPreview(canvasId, img) {
         const canvas = document.getElementById(canvasId);
-        const ctx = canvas.getContext("2d");
+        const ctx = canvas.getContext('2d');
         const targetW = 354;
         const targetH = 472;
 
@@ -619,53 +440,65 @@
       async function processBgChanger() {
         if (!bgImgObj) return;
 
-        const btnProcess = document.getElementById("btn-process-bg");
+        const btnProcess = document.getElementById('btn-process-bg');
         btnProcess.disabled = true;
         btnProcess.innerHTML = `<i data-lucide="loader" class="w-4 h-4 animate-spin"></i> Menghapus Background AI...`;
         lucide.createIcons();
 
-        showToast(
-          "info",
-          "AI Memproses",
-          "Menghapus background lama & memasang warna baru...",
-        );
+        showToast("info", "AI Memproses", "Menghapus background lama & memasang warna baru...");
 
         if (selfieSegmentation) {
           await selfieSegmentation.send({ image: bgImgObj });
         } else {
-          showToast(
-            "error",
-            "AI Unreachable",
-            "Buka via domain HTTPS Vercel agar AI aktif sempurna.",
-          );
+          showToast("error", "AI Unreachable", "Buka via domain HTTPS Vercel agar AI aktif sempurna.");
           btnProcess.disabled = false;
           btnProcess.innerHTML = `<i data-lucide="wand2" class="w-4 h-4"></i> Hapus & Ganti Background AI`;
           lucide.createIcons();
         }
       }
 
+      /* PERBAIKAN ALGORITMA SEGMENTASI AI (PEMBERSIH GARIS MERAH TEPI) */
       function onSegmentationResults(results) {
-        const canvas = document.getElementById("bg-canvas-preview");
-        const ctx = canvas.getContext("2d");
+        const canvas = document.getElementById('bg-canvas-preview');
+        const ctx = canvas.getContext('2d');
         const targetW = 354;
         const targetH = 472;
 
         canvas.width = targetW;
         canvas.height = targetH;
 
+        // 1. Buat temporary mask canvas untuk melakukan thresholding tajam
+        const maskCanvas = document.createElement('canvas');
+        maskCanvas.width = targetW;
+        maskCanvas.height = targetH;
+        const maskCtx = maskCanvas.getContext('2d');
+
+        maskCtx.drawImage(results.segmentationMask, 0, 0, targetW, targetH);
+        
+        // Pembersihan Piksel Gradasi Tepi (Menghilangkan Sisa Halo Warna Merah)
+        const maskImgData = maskCtx.getImageData(0, 0, targetW, targetH);
+        const mData = maskImgData.data;
+        
+        for (let i = 0; i < mData.length; i += 4) {
+          if (mData[i] > 130) {
+            mData[i + 3] = 255;
+          } else {
+            mData[i + 3] = 0;
+          }
+        }
+        maskCtx.putImageData(maskImgData, 0, 0);
+
+        // 2. Render Hasil Akhir
         ctx.save();
         ctx.clearRect(0, 0, targetW, targetH);
 
-        // 1. Render Masker Pemotong AI
-        ctx.drawImage(results.segmentationMask, 0, 0, targetW, targetH);
+        // Tempelkan Mask AI yang Sudah Bersih
+        ctx.drawImage(maskCanvas, 0, 0);
 
-        // 2. Potong Mengikuti Siluet Manusia
-        ctx.globalCompositeOperation = "source-in";
-
-        const scale = Math.min(
-          targetW / bgImgObj.width,
-          targetH / bgImgObj.height,
-        );
+        // PotongFoto Asli Hanya Pada Area Mask AI
+        ctx.globalCompositeOperation = 'source-in';
+        
+        const scale = Math.min(targetW / bgImgObj.width, targetH / bgImgObj.height);
         const w = bgImgObj.width * scale;
         const h = bgImgObj.height * scale;
         const x = (targetW - w) / 2;
@@ -673,37 +506,30 @@
 
         ctx.drawImage(bgImgObj, x, y, w, h);
 
-        // 3. Masukkan Warna Latar Belakang Baru di Lapisan Belakang Tubuh
-        ctx.globalCompositeOperation = "destination-over";
+        // Masukkan Warna Latar Baru di Lapisan Paling Belakang
+        ctx.globalCompositeOperation = 'destination-over';
         ctx.fillStyle = selectedBgColor;
         ctx.fillRect(0, 0, targetW, targetH);
 
         ctx.restore();
 
-        const btnProcess = document.getElementById("btn-process-bg");
+        // Reset Status Tombol
+        const btnProcess = document.getElementById('btn-process-bg');
         btnProcess.disabled = false;
         btnProcess.innerHTML = `<i data-lucide="wand2" class="w-4 h-4"></i> Hapus & Ganti Background AI`;
-        document.getElementById("btn-dl-bg").disabled = false;
+        document.getElementById('btn-dl-bg').disabled = false;
         lucide.createIcons();
 
-        showToast(
-          "success",
-          "Selesai",
-          "Background lama berhasil dihapus & diganti!",
-        );
+        showToast("success", "Selesai", "Background lama berhasil dihapus bersih!");
       }
 
       function downloadBgResult() {
-        const canvas = document.getElementById("bg-canvas-preview");
-        const link = document.createElement("a");
-        link.download = "foto_background_baru.jpg";
-        link.href = canvas.toDataURL("image/jpeg", 0.95);
+        const canvas = document.getElementById('bg-canvas-preview');
+        const link = document.createElement('a');
+        link.download = 'foto_background_baru.jpg';
+        link.href = canvas.toDataURL('image/jpeg', 0.95);
         link.click();
-        showToast(
-          "success",
-          "Berhasil Unduh",
-          "Foto telah tersimpan di perangkat Anda.",
-        );
+        showToast("success", "Berhasil Unduh", "Foto telah tersimpan di perangkat Anda.");
       }
 
       /* LOGIC MENU 2: KONVERSI FILE KE PDF */
@@ -713,13 +539,12 @@
         selectedFiles = Array.from(e.target.files);
         if (selectedFiles.length === 0) return;
 
-        const container = document.getElementById("pdf-items-container");
-        container.innerHTML = "";
+        const container = document.getElementById('pdf-items-container');
+        container.innerHTML = '';
 
         selectedFiles.forEach((f) => {
-          const item = document.createElement("div");
-          item.className =
-            "flex items-center justify-between p-2.5 bg-slate-900/80 rounded-xl border border-slate-800 text-xs";
+          const item = document.createElement('div');
+          item.className = 'flex items-center justify-between p-2.5 bg-slate-900/80 rounded-xl border border-slate-800 text-xs';
           item.innerHTML = `
             <div class="flex items-center gap-2 truncate">
               <i data-lucide="file" class="w-4 h-4 text-amber-400 flex-shrink-0"></i>
@@ -730,14 +555,10 @@
           container.appendChild(item);
         });
 
-        document.getElementById("pdf-file-list").classList.remove("hidden");
-        document.getElementById("pdf-file-list").classList.add("flex");
+        document.getElementById('pdf-file-list').classList.remove('hidden');
+        document.getElementById('pdf-file-list').classList.add('flex');
         lucide.createIcons();
-        showToast(
-          "success",
-          "File Dimuat",
-          `${selectedFiles.length} file siap dikonversi ke PDF.`,
-        );
+        showToast("success", "File Dimuat", `${selectedFiles.length} file siap dikonversi ke PDF.`);
       }
 
       async function convertToPdf() {
@@ -752,9 +573,9 @@
           const file = selectedFiles[i];
           if (i > 0) doc.addPage();
 
-          if (file.type.startsWith("image/")) {
+          if (file.type.startsWith('image/')) {
             const imgData = await readFileAsDataURL(file);
-            doc.addImage(imgData, "JPEG", 15, 15, 180, 240);
+            doc.addImage(imgData, 'JPEG', 15, 15, 180, 240);
           } else {
             const textContent = await readFileAsText(file);
             doc.setFontSize(11);
@@ -762,7 +583,7 @@
           }
         }
 
-        doc.save("dokumen_terkonversi.pdf");
+        doc.save('dokumen_terkonversi.pdf');
         showToast("success", "PDF Selesai", "File PDF telah berhasil diunduh.");
       }
 
