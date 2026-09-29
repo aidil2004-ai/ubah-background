@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Studio Tools - Konverter File ke PDF</title>
 
-    <!-- Tailwind CSS CDN via cdnjs (Bebas Warning) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+    <!-- Tailwind CSS Official Engine CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@0.263.1/dist/umd/lucide.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <!-- jsPDF Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
@@ -24,7 +24,7 @@
         color: #f8fafc;
       }
 
-      /* Animated Background Canvas */
+      /* Background Canvas Animation */
       #bg-canvas {
         position: fixed;
         top: 0;
@@ -35,15 +35,15 @@
         pointer-events: none;
       }
 
-      /* Glassmorphism Styles */
+      /* Glassmorphism Styling */
       .glass-card {
-        background: rgba(15, 23, 42, 0.75);
+        background: rgba(15, 23, 42, 0.85);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
         border: 1px solid rgba(255, 255, 255, 0.12);
       }
 
-      /* Tombol Emas Premium (Gold Theme) */
+      /* Tombol Emas Premium */
       .btn-gold {
         background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
         color: #1a1200;
@@ -59,14 +59,6 @@
         box-shadow: 0 6px 20px rgba(212, 175, 55, 0.55);
       }
 
-      /* Disabled Button Style */
-      button:disabled {
-        opacity: 0.4 !important;
-        cursor: not-allowed !important;
-        pointer-events: none !important;
-        filter: grayscale(100%);
-      }
-
       /* Glowing Text Gold */
       .text-gold-glow {
         background: linear-gradient(135deg, #ffe066 0%, #d4af37 50%, #f3e5ab 100%);
@@ -74,7 +66,7 @@
         -webkit-text-fill-color: transparent;
       }
 
-      /* Toast Pop-up Animation */
+      /* Toast Notification Animation */
       #toast-container {
         position: fixed;
         top: 1rem;
@@ -94,7 +86,7 @@
       }
       .toast-card {
         pointer-events: auto;
-        background: rgba(15, 23, 42, 0.92);
+        background: rgba(15, 23, 42, 0.95);
         backdrop-filter: blur(16px);
         border: 1px solid rgba(255, 255, 255, 0.15);
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
@@ -114,7 +106,7 @@
       }
     </style>
   </head>
-  <body class="min-h-screen relative flex flex-col overflow-x-hidden selection:bg-amber-500 selection:text-black">
+  <body class="min-h-screen relative flex flex-col selection:bg-amber-500 selection:text-black">
     <!-- Toast Container Notification -->
     <div id="toast-container"></div>
 
@@ -152,15 +144,15 @@
         
         <!-- FITUR UTAMA: KONVERSI FILE KE PDF -->
         <section class="flex flex-col gap-5">
-          <div class="glass-card p-6 sm:p-8 rounded-3xl shadow-2xl flex flex-col items-center justify-center border border-amber-500/30">
+          <div class="glass-card p-6 sm:p-8 rounded-3xl shadow-2xl flex flex-col items-center justify-center border border-amber-500/30 text-center">
             <div class="p-4 bg-amber-500/10 rounded-2xl border border-amber-500/20 mb-3">
               <i data-lucide="file-up" class="w-10 h-10 text-amber-400"></i>
             </div>
-            <h2 class="text-lg sm:text-xl font-extrabold text-white text-center mb-2">
+            <h2 class="text-lg sm:text-xl font-extrabold text-white mb-2">
               Unggah File untuk Diubah ke PDF
             </h2>
-            <p class="text-xs sm:text-sm text-slate-300 text-center max-w-md mb-6 leading-relaxed">
-              Pilih satu atau beberapa file gambar (JPG, PNG, WEBP) atau file teks untuk langsung dikonversi menjadi dokumen PDF berkualitas tinggi secara gratis.
+            <p class="text-xs sm:text-sm text-slate-300 max-w-md mb-6 leading-relaxed">
+              Pilih satu atau beberapa file gambar (JPG, PNG, WEBP) atau file teks untuk langsung dikonversi menjadi dokumen PDF berkualitas tinggi secara instan.
             </p>
 
             <label class="border-2 border-dashed border-amber-500/50 hover:border-amber-400 rounded-2xl p-6 sm:p-8 text-center cursor-pointer bg-amber-500/5 hover:bg-amber-500/10 transition w-full max-w-md group">
@@ -177,7 +169,7 @@
               <h3 class="text-xs font-bold text-amber-300 uppercase tracking-wider flex items-center gap-2">
                 <i data-lucide="list-checks" class="w-4 h-4"></i> Daftar File Siap Konversi:
               </h3>
-              <span id="file-count-badge" class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded-full">0 File</span>
+              <span id="file-count-badge" class="text-[10px] bg-slate-800 text-slate-300 px-2.5 py-0.5 rounded-full font-mono">0 File</span>
             </div>
 
             <div id="pdf-items-container" class="flex flex-col gap-2 max-h-64 overflow-y-auto pr-1"></div>
@@ -219,9 +211,10 @@
     </div>
 
     <script>
+      // Inisialisasi Ikon Lucide
       lucide.createIcons();
 
-      /* ANIMATED BACKGROUND CANVAS */
+      /* ANIMATED BACKGROUND CANVAS PARTICLES */
       const bgCanvas = document.getElementById("bg-canvas");
       const bgCtx = bgCanvas.getContext("2d");
       function resizeBg() { bgCanvas.width = window.innerWidth; bgCanvas.height = window.innerHeight; }
