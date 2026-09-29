@@ -2,8 +2,11 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Studio Document Converter</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Document Converter</title>
 
     <!-- Tailwind CSS Engine CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -15,7 +18,8 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
 
-      html, body {
+      html,
+      body {
         width: 100%;
         max-width: 100vw;
         overflow-x: hidden !important;
@@ -131,7 +135,9 @@
       }
     </style>
   </head>
-  <body class="min-h-screen relative flex flex-col selection:bg-indigo-500 selection:text-white">
+  <body
+    class="min-h-screen relative flex flex-col selection:bg-indigo-500 selection:text-white"
+  >
     <!-- Toast Container Notification -->
     <div id="toast-container"></div>
 
@@ -141,34 +147,45 @@
     <div class="relative z-10 flex flex-col min-h-screen w-full">
       <!-- HEADER NAVBAR -->
       <header class="w-full glass-nav sticky top-0 z-30">
-        <div class="max-w-5xl mx-auto px-4 py-3.5 flex items-center justify-between gap-3">
+        <div
+          class="max-w-5xl mx-auto px-4 py-3.5 flex items-center justify-between gap-3"
+        >
           <div class="flex items-center gap-3">
-            <div class="p-2.5 bg-indigo-500/10 rounded-2xl border border-indigo-500/20 text-indigo-400">
+            <div
+              class="p-2.5 bg-indigo-500/10 rounded-2xl border border-indigo-500/20 text-indigo-400"
+            >
               <i data-lucide="layers" class="w-5 h-5"></i>
             </div>
             <div>
-              <h1 class="text-base sm:text-lg font-bold text-white leading-tight tracking-tight">
-                Studio Document Converter
+              <h1
+                class="text-base sm:text-lg font-bold text-white leading-tight tracking-tight"
+              >
+                Document Converter
               </h1>
               <p class="text-[10px] sm:text-xs text-slate-400 font-medium">
-                Solusi konversi dokumen simpel & cepat
+                Konversi dokumen simpel & cepat
               </p>
             </div>
           </div>
 
           <div class="hidden sm:block">
-            <span class="text-[11px] bg-slate-800 text-slate-300 border border-slate-700 px-3 py-1 rounded-full font-medium">
-              Aesthetic • Gratis
+            <span
+              class="text-[11px] bg-slate-800 text-slate-300 border border-slate-700 px-3 py-1 rounded-full font-medium"
+            >
+              Simple • Gratis
             </span>
           </div>
         </div>
 
         <!-- PILIHAN MENU: DROPDOWN UNTUK HP & TABS UNTUK DESKTOP -->
         <div class="max-w-5xl mx-auto px-4 pb-3">
-          
           <!-- 1. DROPDOWN UNTUK LAYAR HP (MOBILE) -->
           <div class="block sm:hidden">
-            <label for="mobile-tool-select" class="text-[10px] text-slate-400 mb-1 block font-medium">Pilih Menu Konversi:</label>
+            <label
+              for="mobile-tool-select"
+              class="text-[10px] text-slate-400 mb-1 block font-medium"
+              >Pilih Menu Konversi:</label
+            >
             <select
               id="mobile-tool-select"
               onchange="switchTab(this.value)"
@@ -186,25 +203,54 @@
 
           <!-- 2. TABS UNTUK LAYAR DESKTOP / LAPTOP -->
           <nav class="hidden sm:flex items-center gap-1.5 overflow-x-auto py-1">
-            <button onclick="switchTab('file-to-pdf')" id="nav-file-to-pdf" class="nav-tab-btn active-tab px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap">
+            <button
+              onclick="switchTab('file-to-pdf')"
+              id="nav-file-to-pdf"
+              class="nav-tab-btn active-tab px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap"
+            >
               <i data-lucide="file-plus" class="w-3.5 h-3.5"></i> File ke PDF
             </button>
-            <button onclick="switchTab('file-to-word')" id="nav-file-to-word" class="nav-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap">
+            <button
+              onclick="switchTab('file-to-word')"
+              id="nav-file-to-word"
+              class="nav-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap"
+            >
               <i data-lucide="file-text" class="w-3.5 h-3.5"></i> File ke Word
             </button>
-            <button onclick="switchTab('file-to-excel')" id="nav-file-to-excel" class="nav-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap">
+            <button
+              onclick="switchTab('file-to-excel')"
+              id="nav-file-to-excel"
+              class="nav-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap"
+            >
               <i data-lucide="sheet" class="w-3.5 h-3.5"></i> File ke Excel
             </button>
-            <button onclick="switchTab('excel-to-pdf')" id="nav-excel-to-pdf" class="nav-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap">
-              <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i> Excel ke PDF
+            <button
+              onclick="switchTab('excel-to-pdf')"
+              id="nav-excel-to-pdf"
+              class="nav-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap"
+            >
+              <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i> Excel
+              ke PDF
             </button>
-            <button onclick="switchTab('pdf-to-excel')" id="nav-pdf-to-excel" class="nav-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap">
+            <button
+              onclick="switchTab('pdf-to-excel')"
+              id="nav-pdf-to-excel"
+              class="nav-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap"
+            >
               <i data-lucide="table" class="w-3.5 h-3.5"></i> PDF ke Excel
             </button>
-            <button onclick="switchTab('word-to-pdf')" id="nav-word-to-pdf" class="nav-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap">
+            <button
+              onclick="switchTab('word-to-pdf')"
+              id="nav-word-to-pdf"
+              class="nav-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap"
+            >
               <i data-lucide="file-type" class="w-3.5 h-3.5"></i> Word ke PDF
             </button>
-            <button onclick="switchTab('pdf-to-word')" id="nav-pdf-to-word" class="nav-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap">
+            <button
+              onclick="switchTab('pdf-to-word')"
+              id="nav-pdf-to-word"
+              class="nav-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap"
+            >
               <i data-lucide="file-down" class="w-3.5 h-3.5"></i> PDF ke Word
             </button>
           </nav>
@@ -212,48 +258,99 @@
       </header>
 
       <!-- MAIN WORKSPACE -->
-      <main class="flex-1 max-w-3xl w-full mx-auto px-4 py-8 flex flex-col gap-6">
-        
+      <main
+        class="flex-1 max-w-3xl w-full mx-auto px-4 py-8 flex flex-col gap-6"
+      >
         <!-- CARD WORKSPACE AESTHETIC -->
-        <div class="glass-card p-6 sm:p-10 rounded-2xl shadow-xl border border-slate-800/80 flex flex-col items-center justify-center text-center relative overflow-hidden">
-          
-          <div class="p-3.5 bg-indigo-500/10 rounded-2xl border border-indigo-500/20 text-indigo-400 mb-3">
+        <div
+          class="glass-card p-6 sm:p-10 rounded-2xl shadow-xl border border-slate-800/80 flex flex-col items-center justify-center text-center relative overflow-hidden"
+        >
+          <div
+            class="p-3.5 bg-indigo-500/10 rounded-2xl border border-indigo-500/20 text-indigo-400 mb-3"
+          >
             <i id="current-tool-icon" data-lucide="file-up" class="w-8 h-8"></i>
           </div>
 
-          <h2 id="current-tool-title" class="text-lg sm:text-xl font-bold text-white mb-1.5">
+          <h2
+            id="current-tool-title"
+            class="text-lg sm:text-xl font-bold text-white mb-1.5"
+          >
             Konversi File ke PDF
           </h2>
-          <p id="current-tool-desc" class="text-xs text-slate-400 max-w-md mb-6 leading-relaxed">
-            Pilih file dokumen atau gambar untuk dikonversi secara cepat dan otomatis.
+          <p
+            id="current-tool-desc"
+            class="text-xs text-slate-400 max-w-md mb-6 leading-relaxed"
+          >
+            Pilih file dokumen atau gambar untuk dikonversi secara cepat dan
+            otomatis.
           </p>
 
           <!-- AREA DROP & UPLOAD FILE -->
-          <label class="border border-dashed border-slate-700 hover:border-indigo-500 rounded-2xl p-6 sm:p-8 text-center cursor-pointer bg-slate-900/40 hover:bg-slate-900/70 transition w-full max-w-md group">
-            <input type="file" id="global-file-input" multiple class="hidden" onchange="handleFileSelect(event)" />
-            <i data-lucide="upload-cloud" class="w-10 h-10 text-slate-400 group-hover:text-indigo-400 mx-auto mb-2 group-hover:scale-105 transition-all"></i>
-            <span class="text-xs font-semibold text-slate-200 block">Pilih Dokumen dari Perangkat</span>
-            <span id="supported-formats-hint" class="text-[11px] text-slate-500 mt-1 block">Mendukung Gambar (JPG, PNG) & Teks (TXT)</span>
+          <label
+            class="border border-dashed border-slate-700 hover:border-indigo-500 rounded-2xl p-6 sm:p-8 text-center cursor-pointer bg-slate-900/40 hover:bg-slate-900/70 transition w-full max-w-md group"
+          >
+            <input
+              type="file"
+              id="global-file-input"
+              multiple
+              class="hidden"
+              onchange="handleFileSelect(event)"
+            />
+            <i
+              data-lucide="upload-cloud"
+              class="w-10 h-10 text-slate-400 group-hover:text-indigo-400 mx-auto mb-2 group-hover:scale-105 transition-all"
+            ></i>
+            <span class="text-xs font-semibold text-slate-200 block"
+              >Pilih Dokumen dari Perangkat</span
+            >
+            <span
+              id="supported-formats-hint"
+              class="text-[11px] text-slate-500 mt-1 block"
+              >Mendukung Gambar (JPG, PNG) & Teks (TXT)</span
+            >
           </label>
 
           <!-- LIST QUEUE FILE YANG DIPILIH -->
-          <div id="file-queue-card" class="w-full max-w-md mt-6 hidden flex-col gap-3 text-left">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-              <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">File Siap Diproses:</span>
-              <span id="queue-count" class="text-[10px] bg-slate-800 text-indigo-300 px-2 py-0.5 rounded-full font-mono">0 File</span>
+          <div
+            id="file-queue-card"
+            class="w-full max-w-md mt-6 hidden flex-col gap-3 text-left"
+          >
+            <div
+              class="flex items-center justify-between border-b border-slate-800 pb-2"
+            >
+              <span
+                class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider"
+                >File Siap Diproses:</span
+              >
+              <span
+                id="queue-count"
+                class="text-[10px] bg-slate-800 text-indigo-300 px-2 py-0.5 rounded-full font-mono"
+                >0 File</span
+              >
             </div>
-            <div id="file-queue-list" class="flex flex-col gap-2 max-h-44 overflow-y-auto pr-1"></div>
+            <div
+              id="file-queue-list"
+              class="flex flex-col gap-2 max-h-44 overflow-y-auto pr-1"
+            ></div>
 
-            <button type="button" onclick="executeConversion()" class="btn-accent w-full py-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 mt-2">
+            <button
+              type="button"
+              onclick="executeConversion()"
+              class="btn-accent w-full py-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 mt-2"
+            >
               <i data-lucide="refresh-cw" class="w-4 h-4"></i> Konversi Sekarang
             </button>
           </div>
         </div>
 
         <!-- FOOTER SUPPORT SAWERIA (ELEGANT & MINIMALIST) -->
-        <section class="glass-card p-4 rounded-2xl border border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 mt-2">
+        <section
+          class="glass-card p-4 rounded-2xl border border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 mt-2"
+        >
           <div class="flex items-center gap-3 w-full sm:w-auto text-left">
-            <div class="p-2 bg-rose-500/10 rounded-xl border border-rose-500/20 text-rose-400 flex-shrink-0">
+            <div
+              class="p-2 bg-rose-500/10 rounded-xl border border-rose-500/20 text-rose-400 flex-shrink-0"
+            >
               <i data-lucide="heart" class="w-4 h-4"></i>
             </div>
             <div>
@@ -275,7 +372,6 @@
             <i data-lucide="coffee" class="w-3.5 h-3.5"></i> Saweria
           </a>
         </section>
-
       </main>
     </div>
 
@@ -285,7 +381,10 @@
       /* AMBIENT BACKGROUND PARTICLES */
       const bgCanvas = document.getElementById("bg-canvas");
       const bgCtx = bgCanvas.getContext("2d");
-      function resizeBg() { bgCanvas.width = window.innerWidth; bgCanvas.height = window.innerHeight; }
+      function resizeBg() {
+        bgCanvas.width = window.innerWidth;
+        bgCanvas.height = window.innerHeight;
+      }
       window.addEventListener("resize", resizeBg);
       resizeBg();
 
@@ -294,7 +393,7 @@
         y: Math.random() * bgCanvas.height,
         r: Math.random() * 1.8 + 0.5,
         speedX: (Math.random() - 0.5) * 0.3,
-        speedY: (Math.random() - 0.5) * 0.3
+        speedY: (Math.random() - 0.5) * 0.3,
       }));
 
       function animateBg() {
@@ -302,97 +401,106 @@
         bgCtx.fillStyle = "#0b0f19";
         bgCtx.fillRect(0, 0, bgCanvas.width, bgCanvas.height);
 
-        particles.forEach(p => {
-          p.x += p.speedX; p.y += p.speedY;
-          if (p.x < 0) p.x = bgCanvas.width; if (p.x > bgCanvas.width) p.x = 0;
-          if (p.y < 0) p.y = bgCanvas.height; if (p.y > bgCanvas.height) p.y = 0;
-          bgCtx.beginPath(); bgCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          bgCtx.fillStyle = "rgba(99, 102, 241, 0.25)"; bgCtx.fill();
+        particles.forEach((p) => {
+          p.x += p.speedX;
+          p.y += p.speedY;
+          if (p.x < 0) p.x = bgCanvas.width;
+          if (p.x > bgCanvas.width) p.x = 0;
+          if (p.y < 0) p.y = bgCanvas.height;
+          if (p.y > bgCanvas.height) p.y = 0;
+          bgCtx.beginPath();
+          bgCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          bgCtx.fillStyle = "rgba(99, 102, 241, 0.25)";
+          bgCtx.fill();
         });
         requestAnimationFrame(animateBg);
       }
       animateBg();
 
       /* STATE MANAGER FOR CONVERTER TOOLS */
-      let currentTool = 'file-to-pdf';
+      let currentTool = "file-to-pdf";
       let selectedFiles = [];
 
       const toolConfigs = {
-        'file-to-pdf': {
-          title: 'Konversi File ke PDF',
-          desc: 'Ubah gambar (JPG, PNG, WEBP) atau file teks biasa menjadi dokumen PDF rapi.',
-          hint: 'Mendukung Gambar (JPG, PNG) & Dokumen Teks (TXT)',
-          icon: 'file-plus',
-          ext: '.pdf'
+        "file-to-pdf": {
+          title: "Konversi File ke PDF",
+          desc: "Ubah gambar (JPG, PNG, WEBP) atau file teks biasa menjadi dokumen PDF rapi.",
+          hint: "Mendukung Gambar (JPG, PNG) & Dokumen Teks (TXT)",
+          icon: "file-plus",
+          ext: ".pdf",
         },
-        'file-to-word': {
-          title: 'Konversi File ke Word (.docx)',
-          desc: 'Ubah dokumen teks atau gambar menjadi file Microsoft Word (.docx).',
-          hint: 'Mendukung TXT, HTML, PDF, Gambar',
-          icon: 'file-text',
-          ext: '.docx'
+        "file-to-word": {
+          title: "Konversi File ke Word (.docx)",
+          desc: "Ubah dokumen teks atau gambar menjadi file Microsoft Word (.docx).",
+          hint: "Mendukung TXT, HTML, PDF, Gambar",
+          icon: "file-text",
+          ext: ".docx",
         },
-        'file-to-excel': {
-          title: 'Konversi File ke Excel (.xlsx)',
-          desc: 'Ubah data tabel atau teks terstruktur menjadi spreadsheet Excel (.xlsx).',
-          hint: 'Mendukung CSV, TXT, PDF',
-          icon: 'sheet',
-          ext: '.xlsx'
+        "file-to-excel": {
+          title: "Konversi File ke Excel (.xlsx)",
+          desc: "Ubah data tabel atau teks terstruktur menjadi spreadsheet Excel (.xlsx).",
+          hint: "Mendukung CSV, TXT, PDF",
+          icon: "sheet",
+          ext: ".xlsx",
         },
-        'excel-to-pdf': {
-          title: 'Konversi Excel ke PDF',
-          desc: 'Ubah lembar kerja Excel (.xlsx / .csv) menjadi dokumen PDF siap cetak.',
-          hint: 'Mendukung File XLS, XLSX, CSV',
-          icon: 'file-spreadsheet',
-          ext: '.pdf'
+        "excel-to-pdf": {
+          title: "Konversi Excel ke PDF",
+          desc: "Ubah lembar kerja Excel (.xlsx / .csv) menjadi dokumen PDF siap cetak.",
+          hint: "Mendukung File XLS, XLSX, CSV",
+          icon: "file-spreadsheet",
+          ext: ".pdf",
         },
-        'pdf-to-excel': {
-          title: 'Konversi PDF ke Excel',
-          desc: 'Ekstrak data tabel dari dokumen PDF menjadi lembar kerja Excel (.xlsx).',
-          hint: 'Mendukung File Dokumen PDF',
-          icon: 'table',
-          ext: '.xlsx'
+        "pdf-to-excel": {
+          title: "Konversi PDF ke Excel",
+          desc: "Ekstrak data tabel dari dokumen PDF menjadi lembar kerja Excel (.xlsx).",
+          hint: "Mendukung File Dokumen PDF",
+          icon: "table",
+          ext: ".xlsx",
         },
-        'word-to-pdf': {
-          title: 'Konversi Word ke PDF',
-          desc: 'Ubah dokumen Microsoft Word (.doc / .docx) menjadi PDF secara cepat.',
-          hint: 'Mendukung File DOC, DOCX',
-          icon: 'file-type',
-          ext: '.pdf'
+        "word-to-pdf": {
+          title: "Konversi Word ke PDF",
+          desc: "Ubah dokumen Microsoft Word (.doc / .docx) menjadi PDF secara cepat.",
+          hint: "Mendukung File DOC, DOCX",
+          icon: "file-type",
+          ext: ".pdf",
         },
-        'pdf-to-word': {
-          title: 'Konversi PDF ke Word',
-          desc: 'Ubah file dokumen PDF menjadi format Word (.docx) yang dapat diedit.',
-          hint: 'Mendukung File Dokumen PDF',
-          icon: 'file-down',
-          ext: '.docx'
-        }
+        "pdf-to-word": {
+          title: "Konversi PDF ke Word",
+          desc: "Ubah file dokumen PDF menjadi format Word (.docx) yang dapat diedit.",
+          hint: "Mendukung File Dokumen PDF",
+          icon: "file-down",
+          ext: ".docx",
+        },
       };
 
       function switchTab(toolId) {
         currentTool = toolId;
 
         // Sync Desktop Tabs & Mobile Dropdown
-        document.querySelectorAll('nav button').forEach(b => b.classList.remove('active-tab'));
+        document
+          .querySelectorAll("nav button")
+          .forEach((b) => b.classList.remove("active-tab"));
         const activeNavBtn = document.getElementById(`nav-${toolId}`);
-        if (activeNavBtn) activeNavBtn.classList.add('active-tab');
+        if (activeNavBtn) activeNavBtn.classList.add("active-tab");
 
-        const mobileSelect = document.getElementById('mobile-tool-select');
+        const mobileSelect = document.getElementById("mobile-tool-select");
         if (mobileSelect) mobileSelect.value = toolId;
 
         const config = toolConfigs[toolId];
-        document.getElementById('current-tool-title').textContent = config.title;
-        document.getElementById('current-tool-desc').textContent = config.desc;
-        document.getElementById('supported-formats-hint').textContent = config.hint;
+        document.getElementById("current-tool-title").textContent =
+          config.title;
+        document.getElementById("current-tool-desc").textContent = config.desc;
+        document.getElementById("supported-formats-hint").textContent =
+          config.hint;
 
-        const iconEl = document.getElementById('current-tool-icon');
-        iconEl.setAttribute('data-lucide', config.icon);
+        const iconEl = document.getElementById("current-tool-icon");
+        iconEl.setAttribute("data-lucide", config.icon);
         lucide.createIcons();
 
         // Reset Queue File
         selectedFiles = [];
-        document.getElementById('file-queue-card').classList.add('hidden');
-        document.getElementById('global-file-input').value = '';
+        document.getElementById("file-queue-card").classList.add("hidden");
+        document.getElementById("global-file-input").value = "";
 
         showToast("info", "Menu Aktif", config.title);
       }
@@ -403,8 +511,18 @@
         const toast = document.createElement("div");
         toast.className = "toast-card";
 
-        let icon = type === "success" ? "check-circle" : type === "error" ? "alert-triangle" : "info";
-        let color = type === "success" ? "text-emerald-400 border-emerald-500/30" : type === "error" ? "text-rose-400 border-rose-500/30" : "text-indigo-400 border-indigo-500/30";
+        let icon =
+          type === "success"
+            ? "check-circle"
+            : type === "error"
+              ? "alert-triangle"
+              : "info";
+        let color =
+          type === "success"
+            ? "text-emerald-400 border-emerald-500/30"
+            : type === "error"
+              ? "text-rose-400 border-rose-500/30"
+              : "text-indigo-400 border-indigo-500/30";
 
         toast.classList.add(...color.split(" "));
         toast.innerHTML = `
@@ -419,7 +537,10 @@
         container.appendChild(toast);
         lucide.createIcons();
         setTimeout(() => toast.classList.add("show"), 10);
-        setTimeout(() => { toast.classList.remove("show"); setTimeout(() => toast.remove(), 300); }, 3000);
+        setTimeout(() => {
+          toast.classList.remove("show");
+          setTimeout(() => toast.remove(), 300);
+        }, 3000);
       }
 
       /* FILE SELECTION HANDLING */
@@ -427,12 +548,13 @@
         selectedFiles = Array.from(e.target.files);
         if (selectedFiles.length === 0) return;
 
-        const container = document.getElementById('file-queue-list');
-        container.innerHTML = '';
+        const container = document.getElementById("file-queue-list");
+        container.innerHTML = "";
 
         selectedFiles.forEach((f) => {
-          const item = document.createElement('div');
-          item.className = 'flex items-center justify-between p-2.5 bg-slate-900/80 rounded-xl border border-slate-800 text-xs';
+          const item = document.createElement("div");
+          item.className =
+            "flex items-center justify-between p-2.5 bg-slate-900/80 rounded-xl border border-slate-800 text-xs";
           item.innerHTML = `
             <div class="flex items-center gap-2 truncate">
               <i data-lucide="file-check" class="w-3.5 h-3.5 text-indigo-400 flex-shrink-0"></i>
@@ -443,11 +565,16 @@
           container.appendChild(item);
         });
 
-        document.getElementById('queue-count').textContent = `${selectedFiles.length} File`;
-        document.getElementById('file-queue-card').classList.remove('hidden');
-        document.getElementById('file-queue-card').classList.add('flex');
+        document.getElementById("queue-count").textContent =
+          `${selectedFiles.length} File`;
+        document.getElementById("file-queue-card").classList.remove("hidden");
+        document.getElementById("file-queue-card").classList.add("flex");
         lucide.createIcons();
-        showToast("success", "File Berhasil Dimuat", `${selectedFiles.length} file dipilih.`);
+        showToast(
+          "success",
+          "File Berhasil Dimuat",
+          `${selectedFiles.length} file dipilih.`,
+        );
       }
 
       /* CONVERSION EXECUTION */
@@ -455,10 +582,14 @@
         if (selectedFiles.length === 0) return;
 
         const config = toolConfigs[currentTool];
-        showToast("info", "Sedang Memproses", `Mengkonversi ke format ${config.ext.toUpperCase()}...`);
+        showToast(
+          "info",
+          "Sedang Memproses",
+          `Mengkonversi ke format ${config.ext.toUpperCase()}...`,
+        );
 
         try {
-          if (currentTool.endsWith('-pdf') || currentTool === 'file-to-pdf') {
+          if (currentTool.endsWith("-pdf") || currentTool === "file-to-pdf") {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
 
@@ -466,9 +597,9 @@
               const file = selectedFiles[i];
               if (i > 0) doc.addPage();
 
-              if (file.type.startsWith('image/')) {
+              if (file.type.startsWith("image/")) {
                 const imgData = await readFileAsDataURL(file);
-                doc.addImage(imgData, 'JPEG', 15, 15, 180, 240);
+                doc.addImage(imgData, "JPEG", 15, 15, 180, 240);
               } else {
                 const textContent = await readFileAsText(file);
                 doc.setFontSize(11);
@@ -476,34 +607,54 @@
               }
             }
             doc.save(`konversi_${Date.now()}${config.ext}`);
-
-          } else if (currentTool.endsWith('-word') || currentTool === 'file-to-word') {
+          } else if (
+            currentTool.endsWith("-word") ||
+            currentTool === "file-to-word"
+          ) {
             let textOutput = `DOKUMEN HASIL KONVERSI WORD\nTanggal: ${new Date().toLocaleDateString()}\n\n`;
             for (let file of selectedFiles) {
               textOutput += `=== NAMA FILE: ${file.name} ===\n`;
-              textOutput += await readFileAsText(file) + "\n\n";
+              textOutput += (await readFileAsText(file)) + "\n\n";
             }
-            downloadBlob(textOutput, `konversi_${Date.now()}.docx`, 'application/msword');
-
-          } else if (currentTool.endsWith('-excel') || currentTool === 'file-to-excel') {
+            downloadBlob(
+              textOutput,
+              `konversi_${Date.now()}.docx`,
+              "application/msword",
+            );
+          } else if (
+            currentTool.endsWith("-excel") ||
+            currentTool === "file-to-excel"
+          ) {
             let csvOutput = "Nama File, Ukuran (KB), Status\n";
-            selectedFiles.forEach(f => {
-              csvOutput += `"${f.name}", "${(f.size/1024).toFixed(2)} KB", "Terkonversi"\n`;
+            selectedFiles.forEach((f) => {
+              csvOutput += `"${f.name}", "${(f.size / 1024).toFixed(2)} KB", "Terkonversi"\n`;
             });
-            downloadBlob(csvOutput, `konversi_${Date.now()}.xlsx`, 'application/vnd.ms-excel');
+            downloadBlob(
+              csvOutput,
+              `konversi_${Date.now()}.xlsx`,
+              "application/vnd.ms-excel",
+            );
           }
 
-          showToast("success", "Konversi Selesai", `File ${config.ext.toUpperCase()} terunduh.`);
+          showToast(
+            "success",
+            "Konversi Selesai",
+            `File ${config.ext.toUpperCase()} terunduh.`,
+          );
         } catch (err) {
           console.error(err);
-          showToast("error", "Gagal Memproses", "Terjadi kesalahan saat konversi file.");
+          showToast(
+            "error",
+            "Gagal Memproses",
+            "Terjadi kesalahan saat konversi file.",
+          );
         }
       }
 
       function downloadBlob(content, filename, contentType) {
         const blob = new Blob([content], { type: contentType });
         const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
+        const a = document.createElement("a");
         a.href = url;
         a.download = filename;
         a.click();
