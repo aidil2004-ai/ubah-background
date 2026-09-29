@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Studio Converter - Multi Document Hub</title>
+    <title>Studio Document Converter</title>
 
-    <!-- Tailwind CSS Official Engine CDN -->
+    <!-- Tailwind CSS Engine CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -13,18 +13,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
 
       html, body {
         width: 100%;
         max-width: 100vw;
         overflow-x: hidden !important;
         font-family: "Plus Jakarta Sans", sans-serif;
-        background-color: #050811;
-        color: #f8fafc;
+        background-color: #0b0f19;
+        color: #f1f5f9;
       }
 
-      /* Animated Canvas Background */
+      /* Animated Ambient Glow Background */
       #bg-canvas {
         position: fixed;
         top: 0;
@@ -35,70 +35,63 @@
         pointer-events: none;
       }
 
-      /* Glassmorphism Ultra Premium */
+      /* Glassmorphism Aesthetic Card */
       .glass-card {
         background: rgba(15, 23, 42, 0.75);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(212, 175, 55, 0.2);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
       }
 
       .glass-nav {
-        background: rgba(10, 15, 30, 0.85);
+        background: rgba(11, 15, 25, 0.85);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+        border-b: 1px solid rgba(255, 255, 255, 0.08);
       }
 
-      /* Tombol Emas Premium (Gold Theme) */
-      .btn-gold {
-        background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
-        color: #120c00;
-        font-weight: 800;
-        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-        border: 1px solid rgba(255, 223, 0, 0.6);
-        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      /* Minimalist Accent Buttons */
+      .btn-accent {
+        background: #6366f1;
+        color: #ffffff;
+        font-weight: 600;
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       }
-      .btn-gold:hover {
-        transform: translateY(-2px) scale(1.02);
-        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.55);
-      }
-      .btn-gold.active-tab {
-        background: linear-gradient(135deg, #ffe066 0%, #fcf6ba 30%, #d4af37 70%, #aa771c 100%);
-        border-color: #ffffff;
-        box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+      .btn-accent:hover {
+        background: #4f46e5;
+        box-shadow: 0 4px 20px rgba(99, 102, 241, 0.35);
+        transform: translateY(-1px);
       }
 
-      /* Glowing Text Gold */
-      .text-gold-glow {
-        background: linear-gradient(135deg, #ffe066 0%, #d4af37 50%, #f3e5ab 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+      /* Desktop Tab Active State */
+      .nav-tab-btn {
+        color: #94a3b8;
+        background: transparent;
+        border: 1px solid transparent;
+        transition: all 0.2s ease;
+      }
+      .nav-tab-btn:hover {
+        color: #f1f5f9;
+        background: rgba(255, 255, 255, 0.05);
+      }
+      .nav-tab-btn.active-tab {
+        color: #38bdf8;
+        background: rgba(56, 189, 248, 0.1);
+        border-color: rgba(56, 189, 248, 0.3);
       }
 
-      /* Smooth Tab Transition */
-      .tab-content {
-        display: none;
-        opacity: 0;
-        transform: translateY(12px);
-        transition: all 0.35s ease-in-out;
+      /* Custom Dropdown Styling */
+      select.custom-select {
+        background-color: #1e293b;
+        color: #f8fafc;
+        border: 1px solid rgba(255, 255, 255, 0.15);
       }
-      .tab-content.active {
-        display: flex;
-        opacity: 1;
-        transform: translateY(0);
+      select.custom-select:focus {
+        outline: none;
+        border-color: #6366f1;
       }
 
-      /* Custom Scrollbar for Tab Navigation */
-      .no-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-
-      /* Toast Pop-up Animation */
+      /* Toast Notification Animation */
       #toast-container {
         position: fixed;
         top: 1rem;
@@ -120,8 +113,8 @@
         pointer-events: auto;
         background: rgba(15, 23, 42, 0.95);
         backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
         border-radius: 1rem;
         padding: 0.875rem 1rem;
         display: flex;
@@ -130,7 +123,7 @@
         color: #fff;
         transform: translateY(-20px) scale(0.9);
         opacity: 0;
-        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       }
       .toast-card.show {
         transform: translateY(0) scale(1);
@@ -138,117 +131,137 @@
       }
     </style>
   </head>
-  <body class="min-h-screen relative flex flex-col selection:bg-amber-500 selection:text-black">
+  <body class="min-h-screen relative flex flex-col selection:bg-indigo-500 selection:text-white">
     <!-- Toast Container Notification -->
     <div id="toast-container"></div>
 
-    <!-- Background Canvas Particles -->
+    <!-- Background Canvas Ambient -->
     <canvas id="bg-canvas"></canvas>
 
     <div class="relative z-10 flex flex-col min-h-screen w-full">
       <!-- HEADER NAVBAR -->
       <header class="w-full glass-nav sticky top-0 z-30">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div class="max-w-5xl mx-auto px-4 py-3.5 flex items-center justify-between gap-3">
           <div class="flex items-center gap-3">
-            <div class="p-2.5 bg-gradient-to-tr from-amber-400 via-amber-500 to-yellow-600 rounded-2xl shadow-lg shadow-amber-500/30">
-              <i data-lucide="layers" class="w-6 h-6 text-slate-950"></i>
+            <div class="p-2.5 bg-indigo-500/10 rounded-2xl border border-indigo-500/20 text-indigo-400">
+              <i data-lucide="layers" class="w-5 h-5"></i>
             </div>
             <div>
-              <h1 class="text-lg sm:text-xl font-black text-gold-glow leading-tight">
+              <h1 class="text-base sm:text-lg font-bold text-white leading-tight tracking-tight">
                 Studio Document Converter
               </h1>
-              <p class="text-[10px] sm:text-xs text-amber-200/80 font-medium">
-                Pusat Konversi Semua Format Dokumen & Media
+              <p class="text-[10px] sm:text-xs text-slate-400 font-medium">
+                Solusi konversi dokumen simpel & cepat
               </p>
             </div>
           </div>
 
-          <div class="flex items-center gap-2">
-            <span class="text-[11px] bg-amber-500/10 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full font-bold">
-              ⚡ All-in-One Convert
+          <div class="hidden sm:block">
+            <span class="text-[11px] bg-slate-800 text-slate-300 border border-slate-700 px-3 py-1 rounded-full font-medium">
+              Aesthetic • Gratis
             </span>
           </div>
         </div>
 
-        <!-- MENU SUB-NAVIGASI TAB 7 FITUR -->
-        <div class="max-w-6xl mx-auto px-4 pb-2">
-          <nav class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
-            <button onclick="switchTab('file-to-pdf')" id="nav-file-to-pdf" class="btn-gold active-tab px-3.5 py-2 rounded-xl text-xs flex items-center gap-1.5 whitespace-nowrap">
-              <i data-lucide="file-plus" class="w-4 h-4"></i> File ke PDF
+        <!-- PILIHAN MENU: DROPDOWN UNTUK HP & TABS UNTUK DESKTOP -->
+        <div class="max-w-5xl mx-auto px-4 pb-3">
+          
+          <!-- 1. DROPDOWN UNTUK LAYAR HP (MOBILE) -->
+          <div class="block sm:hidden">
+            <label for="mobile-tool-select" class="text-[10px] text-slate-400 mb-1 block font-medium">Pilih Menu Konversi:</label>
+            <select
+              id="mobile-tool-select"
+              onchange="switchTab(this.value)"
+              class="custom-select w-full py-2.5 px-3 rounded-xl text-xs font-semibold shadow-sm cursor-pointer"
+            >
+              <option value="file-to-pdf">📄 Ubah File ke PDF</option>
+              <option value="file-to-word">📝 Ubah File ke Word</option>
+              <option value="file-to-excel">📊 Ubah File ke Excel</option>
+              <option value="excel-to-pdf">📈 Excel ke PDF</option>
+              <option value="pdf-to-excel">📋 PDF ke Excel</option>
+              <option value="word-to-pdf">📑 Word ke PDF</option>
+              <option value="pdf-to-word">📂 PDF ke Word</option>
+            </select>
+          </div>
+
+          <!-- 2. TABS UNTUK LAYAR DESKTOP / LAPTOP -->
+          <nav class="hidden sm:flex items-center gap-1.5 overflow-x-auto py-1">
+            <button onclick="switchTab('file-to-pdf')" id="nav-file-to-pdf" class="nav-tab-btn active-tab px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap">
+              <i data-lucide="file-plus" class="w-3.5 h-3.5"></i> File ke PDF
             </button>
-            <button onclick="switchTab('file-to-word')" id="nav-file-to-word" class="btn-gold px-3.5 py-2 rounded-xl text-xs flex items-center gap-1.5 whitespace-nowrap">
-              <i data-lucide="file-text" class="w-4 h-4"></i> File ke Word
+            <button onclick="switchTab('file-to-word')" id="nav-file-to-word" class="nav-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap">
+              <i data-lucide="file-text" class="w-3.5 h-3.5"></i> File ke Word
             </button>
-            <button onclick="switchTab('file-to-excel')" id="nav-file-to-excel" class="btn-gold px-3.5 py-2 rounded-xl text-xs flex items-center gap-1.5 whitespace-nowrap">
-              <i data-lucide="sheet" class="w-4 h-4"></i> File ke Excel
+            <button onclick="switchTab('file-to-excel')" id="nav-file-to-excel" class="nav-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap">
+              <i data-lucide="sheet" class="w-3.5 h-3.5"></i> File ke Excel
             </button>
-            <button onclick="switchTab('excel-to-pdf')" id="nav-excel-to-pdf" class="btn-gold px-3.5 py-2 rounded-xl text-xs flex items-center gap-1.5 whitespace-nowrap">
-              <i data-lucide="file-spreadsheet" class="w-4 h-4"></i> Excel ke PDF
+            <button onclick="switchTab('excel-to-pdf')" id="nav-excel-to-pdf" class="nav-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap">
+              <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i> Excel ke PDF
             </button>
-            <button onclick="switchTab('pdf-to-excel')" id="nav-pdf-to-excel" class="btn-gold px-3.5 py-2 rounded-xl text-xs flex items-center gap-1.5 whitespace-nowrap">
-              <i data-lucide="table" class="w-4 h-4"></i> PDF ke Excel
+            <button onclick="switchTab('pdf-to-excel')" id="nav-pdf-to-excel" class="nav-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap">
+              <i data-lucide="table" class="w-3.5 h-3.5"></i> PDF ke Excel
             </button>
-            <button onclick="switchTab('word-to-pdf')" id="nav-word-to-pdf" class="btn-gold px-3.5 py-2 rounded-xl text-xs flex items-center gap-1.5 whitespace-nowrap">
-              <i data-lucide="file-type" class="w-4 h-4"></i> Word ke PDF
+            <button onclick="switchTab('word-to-pdf')" id="nav-word-to-pdf" class="nav-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap">
+              <i data-lucide="file-type" class="w-3.5 h-3.5"></i> Word ke PDF
             </button>
-            <button onclick="switchTab('pdf-to-word')" id="nav-pdf-to-word" class="btn-gold px-3.5 py-2 rounded-xl text-xs flex items-center gap-1.5 whitespace-nowrap">
-              <i data-lucide="file-down" class="w-4 h-4"></i> PDF ke Word
+            <button onclick="switchTab('pdf-to-word')" id="nav-pdf-to-word" class="nav-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap">
+              <i data-lucide="file-down" class="w-3.5 h-3.5"></i> PDF ke Word
             </button>
           </nav>
         </div>
       </header>
 
-      <!-- MAIN WORKSPACE CONTAINER -->
-      <main class="flex-1 max-w-5xl w-full mx-auto px-4 py-8 flex flex-col gap-6">
+      <!-- MAIN WORKSPACE -->
+      <main class="flex-1 max-w-3xl w-full mx-auto px-4 py-8 flex flex-col gap-6">
         
-        <!-- MODULE KONVERTER TEMPLATE UTAMA -->
-        <div class="glass-card p-6 sm:p-10 rounded-3xl shadow-2xl border border-amber-500/30 flex flex-col items-center justify-center text-center relative overflow-hidden">
+        <!-- CARD WORKSPACE AESTHETIC -->
+        <div class="glass-card p-6 sm:p-10 rounded-2xl shadow-xl border border-slate-800/80 flex flex-col items-center justify-center text-center relative overflow-hidden">
           
-          <div class="p-4 bg-amber-500/10 rounded-2xl border border-amber-500/30 mb-4">
-            <i id="current-tool-icon" data-lucide="file-up" class="w-10 h-10 text-amber-400"></i>
+          <div class="p-3.5 bg-indigo-500/10 rounded-2xl border border-indigo-500/20 text-indigo-400 mb-3">
+            <i id="current-tool-icon" data-lucide="file-up" class="w-8 h-8"></i>
           </div>
 
-          <h2 id="current-tool-title" class="text-xl sm:text-2xl font-extrabold text-white mb-2">
-            Ubah File ke PDF
+          <h2 id="current-tool-title" class="text-lg sm:text-xl font-bold text-white mb-1.5">
+            Konversi File ke PDF
           </h2>
-          <p id="current-tool-desc" class="text-xs sm:text-sm text-slate-300 max-w-lg mb-6 leading-relaxed">
-            Pilih file dokumen atau gambar untuk dikonversi secara cepat dan gratis.
+          <p id="current-tool-desc" class="text-xs text-slate-400 max-w-md mb-6 leading-relaxed">
+            Pilih file dokumen atau gambar untuk dikonversi secara cepat dan otomatis.
           </p>
 
-          <!-- UPLOAD INPUT CARD -->
-          <label class="border-2 border-dashed border-amber-500/50 hover:border-amber-400 rounded-2xl p-6 sm:p-8 text-center cursor-pointer bg-amber-500/5 hover:bg-amber-500/10 transition w-full max-w-md group shadow-inner">
+          <!-- AREA DROP & UPLOAD FILE -->
+          <label class="border border-dashed border-slate-700 hover:border-indigo-500 rounded-2xl p-6 sm:p-8 text-center cursor-pointer bg-slate-900/40 hover:bg-slate-900/70 transition w-full max-w-md group">
             <input type="file" id="global-file-input" multiple class="hidden" onchange="handleFileSelect(event)" />
-            <i data-lucide="upload-cloud" class="w-12 h-12 text-amber-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
-            <span class="text-sm font-bold text-white block">Pilih Dokumen dari Perangkat</span>
-            <span id="supported-formats-hint" class="text-xs text-slate-400 mt-1 block">Mendukung JPG, PNG, WEBP, TXT</span>
+            <i data-lucide="upload-cloud" class="w-10 h-10 text-slate-400 group-hover:text-indigo-400 mx-auto mb-2 group-hover:scale-105 transition-all"></i>
+            <span class="text-xs font-semibold text-slate-200 block">Pilih Dokumen dari Perangkat</span>
+            <span id="supported-formats-hint" class="text-[11px] text-slate-500 mt-1 block">Mendukung Gambar (JPG, PNG) & Teks (TXT)</span>
           </label>
 
-          <!-- LIST FILE DIPILIH -->
+          <!-- LIST QUEUE FILE YANG DIPILIH -->
           <div id="file-queue-card" class="w-full max-w-md mt-6 hidden flex-col gap-3 text-left">
             <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-              <span class="text-xs font-bold text-amber-300 uppercase tracking-wider">File Siap Konversi:</span>
-              <span id="queue-count" class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded-full font-mono">0 File</span>
+              <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">File Siap Diproses:</span>
+              <span id="queue-count" class="text-[10px] bg-slate-800 text-indigo-300 px-2 py-0.5 rounded-full font-mono">0 File</span>
             </div>
-            <div id="file-queue-list" class="flex flex-col gap-2 max-h-48 overflow-y-auto pr-1"></div>
+            <div id="file-queue-list" class="flex flex-col gap-2 max-h-44 overflow-y-auto pr-1"></div>
 
-            <button type="button" onclick="executeConversion()" class="btn-gold w-full py-3.5 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 mt-2 shadow-lg">
-              <i data-lucide="refresh-cw" class="w-4 h-4"></i> Mulai Konversi Sekarang
+            <button type="button" onclick="executeConversion()" class="btn-accent w-full py-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 mt-2">
+              <i data-lucide="refresh-cw" class="w-4 h-4"></i> Konversi Sekarang
             </button>
           </div>
         </div>
 
-        <!-- SECTION DUKUNGAN SAWERIA RESMI -->
-        <section class="glass-card p-4 sm:p-5 rounded-2xl border border-amber-500/30 bg-gradient-to-r from-amber-950/30 via-slate-900/80 to-amber-950/30 flex flex-col sm:flex-row items-center justify-between gap-4 mt-2">
-          <div class="flex items-center gap-3 w-full sm:w-auto">
-            <div class="p-2.5 bg-gradient-to-tr from-amber-400 to-yellow-600 rounded-xl shadow-md text-slate-950 flex-shrink-0">
-              <i data-lucide="heart" class="w-5 h-5 fill-slate-950"></i>
+        <!-- FOOTER SUPPORT SAWERIA (ELEGANT & MINIMALIST) -->
+        <section class="glass-card p-4 rounded-2xl border border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 mt-2">
+          <div class="flex items-center gap-3 w-full sm:w-auto text-left">
+            <div class="p-2 bg-rose-500/10 rounded-xl border border-rose-500/20 text-rose-400 flex-shrink-0">
+              <i data-lucide="heart" class="w-4 h-4"></i>
             </div>
             <div>
-              <h3 class="text-xs sm:text-sm font-bold text-white flex items-center gap-1.5">
-                Dukung Pengembang <span class="text-[9px] bg-amber-500/20 text-amber-300 border border-amber-500/40 px-2 py-0.2 rounded-full font-mono">Saweria</span>
+              <h3 class="text-xs font-semibold text-slate-200">
+                Suka dengan layanan ini?
               </h3>
-              <p class="text-[10px] sm:text-xs text-slate-300 mt-0.5 leading-snug">
-                Suka dengan layanan konverter gratis ini? Traktir kopi untuk mendukung server!
+              <p class="text-[10px] text-slate-400 mt-0.5">
+                Dukungan via Saweria membantu menjaga server tetap aktif gratis.
               </p>
             </div>
           </div>
@@ -257,9 +270,9 @@
             href="https://saweria.co/fotostudio"
             target="_blank"
             rel="noopener noreferrer"
-            class="btn-gold w-full sm:w-auto px-5 py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 flex-shrink-0 text-center"
+            class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 rounded-xl text-xs font-medium flex items-center justify-center gap-1.5 transition w-full sm:w-auto text-center flex-shrink-0"
           >
-            <i data-lucide="coffee" class="w-4 h-4"></i> Traktir Kopi via Saweria
+            <i data-lucide="coffee" class="w-3.5 h-3.5"></i> Saweria
           </a>
         </section>
 
@@ -269,24 +282,24 @@
     <script>
       lucide.createIcons();
 
-      /* ANIMATED BACKGROUND PARTICLES */
+      /* AMBIENT BACKGROUND PARTICLES */
       const bgCanvas = document.getElementById("bg-canvas");
       const bgCtx = bgCanvas.getContext("2d");
       function resizeBg() { bgCanvas.width = window.innerWidth; bgCanvas.height = window.innerHeight; }
       window.addEventListener("resize", resizeBg);
       resizeBg();
 
-      const particles = Array.from({ length: 45 }, () => ({
+      const particles = Array.from({ length: 30 }, () => ({
         x: Math.random() * bgCanvas.width,
         y: Math.random() * bgCanvas.height,
-        r: Math.random() * 2 + 0.5,
-        speedX: (Math.random() - 0.5) * 0.4,
-        speedY: (Math.random() - 0.5) * 0.4
+        r: Math.random() * 1.8 + 0.5,
+        speedX: (Math.random() - 0.5) * 0.3,
+        speedY: (Math.random() - 0.5) * 0.3
       }));
 
       function animateBg() {
         bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
-        bgCtx.fillStyle = "#050811";
+        bgCtx.fillStyle = "#0b0f19";
         bgCtx.fillRect(0, 0, bgCanvas.width, bgCanvas.height);
 
         particles.forEach(p => {
@@ -294,34 +307,34 @@
           if (p.x < 0) p.x = bgCanvas.width; if (p.x > bgCanvas.width) p.x = 0;
           if (p.y < 0) p.y = bgCanvas.height; if (p.y > bgCanvas.height) p.y = 0;
           bgCtx.beginPath(); bgCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          bgCtx.fillStyle = "rgba(212, 175, 55, 0.35)"; bgCtx.fill();
+          bgCtx.fillStyle = "rgba(99, 102, 241, 0.25)"; bgCtx.fill();
         });
         requestAnimationFrame(animateBg);
       }
       animateBg();
 
-      /* STATE MANAGERS FOR 7 CONVERTER TOOLS */
+      /* STATE MANAGER FOR CONVERTER TOOLS */
       let currentTool = 'file-to-pdf';
       let selectedFiles = [];
 
       const toolConfigs = {
         'file-to-pdf': {
           title: 'Konversi File ke PDF',
-          desc: 'Ubah gambar (JPG, PNG, WEBP) atau file teks biasa menjadi file PDF rapi secara instan.',
+          desc: 'Ubah gambar (JPG, PNG, WEBP) atau file teks biasa menjadi dokumen PDF rapi.',
           hint: 'Mendukung Gambar (JPG, PNG) & Dokumen Teks (TXT)',
           icon: 'file-plus',
           ext: '.pdf'
         },
         'file-to-word': {
           title: 'Konversi File ke Word (.docx)',
-          desc: 'Ubah dokumen teks atau gambar menjadi format Microsoft Word (.docx).',
+          desc: 'Ubah dokumen teks atau gambar menjadi file Microsoft Word (.docx).',
           hint: 'Mendukung TXT, HTML, PDF, Gambar',
           icon: 'file-text',
           ext: '.docx'
         },
         'file-to-excel': {
           title: 'Konversi File ke Excel (.xlsx)',
-          desc: 'Ubah data tabel atau teks terstruktur menjadi lembar kerja spreadsheet Excel (.xlsx).',
+          desc: 'Ubah data tabel atau teks terstruktur menjadi spreadsheet Excel (.xlsx).',
           hint: 'Mendukung CSV, TXT, PDF',
           icon: 'sheet',
           ext: '.xlsx'
@@ -342,7 +355,7 @@
         },
         'word-to-pdf': {
           title: 'Konversi Word ke PDF',
-          desc: 'Ubah dokumen Microsoft Word (.doc / .docx) menjadi PDF dengan tampilan presisi.',
+          desc: 'Ubah dokumen Microsoft Word (.doc / .docx) menjadi PDF secara cepat.',
           hint: 'Mendukung File DOC, DOCX',
           icon: 'file-type',
           ext: '.pdf'
@@ -358,8 +371,14 @@
 
       function switchTab(toolId) {
         currentTool = toolId;
+
+        // Sync Desktop Tabs & Mobile Dropdown
         document.querySelectorAll('nav button').forEach(b => b.classList.remove('active-tab'));
-        document.getElementById(`nav-${toolId}`).classList.add('active-tab');
+        const activeNavBtn = document.getElementById(`nav-${toolId}`);
+        if (activeNavBtn) activeNavBtn.classList.add('active-tab');
+
+        const mobileSelect = document.getElementById('mobile-tool-select');
+        if (mobileSelect) mobileSelect.value = toolId;
 
         const config = toolConfigs[toolId];
         document.getElementById('current-tool-title').textContent = config.title;
@@ -370,12 +389,12 @@
         iconEl.setAttribute('data-lucide', config.icon);
         lucide.createIcons();
 
-        // Reset Queue
+        // Reset Queue File
         selectedFiles = [];
         document.getElementById('file-queue-card').classList.add('hidden');
         document.getElementById('global-file-input').value = '';
 
-        showToast("info", "Menu Diganti", `Aktif: ${config.title}`);
+        showToast("info", "Menu Aktif", config.title);
       }
 
       /* TOAST NOTIFICATION SYSTEM */
@@ -385,7 +404,7 @@
         toast.className = "toast-card";
 
         let icon = type === "success" ? "check-circle" : type === "error" ? "alert-triangle" : "info";
-        let color = type === "success" ? "text-emerald-400 border-emerald-500/30" : type === "error" ? "text-rose-400 border-rose-500/30" : "text-amber-400 border-amber-500/30";
+        let color = type === "success" ? "text-emerald-400 border-emerald-500/30" : type === "error" ? "text-rose-400 border-rose-500/30" : "text-indigo-400 border-indigo-500/30";
 
         toast.classList.add(...color.split(" "));
         toast.innerHTML = `
@@ -393,17 +412,17 @@
             <i data-lucide="${icon}" class="w-4 h-4"></i>
           </div>
           <div class="flex-1 min-w-0">
-            <h4 class="text-xs font-bold text-white truncate">${title}</h4>
-            <p class="text-[10px] text-slate-300 mt-0.5">${message}</p>
+            <h4 class="text-xs font-semibold text-white truncate">${title}</h4>
+            <p class="text-[10px] text-slate-400 mt-0.5">${message}</p>
           </div>
         `;
         container.appendChild(toast);
         lucide.createIcons();
         setTimeout(() => toast.classList.add("show"), 10);
-        setTimeout(() => { toast.classList.remove("show"); setTimeout(() => toast.remove(), 350); }, 3200);
+        setTimeout(() => { toast.classList.remove("show"); setTimeout(() => toast.remove(), 300); }, 3000);
       }
 
-      /* FILE HANDLING & QUEUE */
+      /* FILE SELECTION HANDLING */
       function handleFileSelect(e) {
         selectedFiles = Array.from(e.target.files);
         if (selectedFiles.length === 0) return;
@@ -413,13 +432,13 @@
 
         selectedFiles.forEach((f) => {
           const item = document.createElement('div');
-          item.className = 'flex items-center justify-between p-3 bg-slate-900/90 rounded-xl border border-slate-800 text-xs';
+          item.className = 'flex items-center justify-between p-2.5 bg-slate-900/80 rounded-xl border border-slate-800 text-xs';
           item.innerHTML = `
-            <div class="flex items-center gap-2.5 truncate">
-              <i data-lucide="file-check" class="w-4 h-4 text-amber-400 flex-shrink-0"></i>
+            <div class="flex items-center gap-2 truncate">
+              <i data-lucide="file-check" class="w-3.5 h-3.5 text-indigo-400 flex-shrink-0"></i>
               <span class="text-slate-200 truncate font-medium">${f.name}</span>
             </div>
-            <span class="text-[10px] bg-slate-800 text-amber-200/80 px-2 py-0.5 rounded-md font-mono flex-shrink-0">${(f.size / 1024).toFixed(1)} KB</span>
+            <span class="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded-md font-mono flex-shrink-0">${(f.size / 1024).toFixed(1)} KB</span>
           `;
           container.appendChild(item);
         });
@@ -428,19 +447,18 @@
         document.getElementById('file-queue-card').classList.remove('hidden');
         document.getElementById('file-queue-card').classList.add('flex');
         lucide.createIcons();
-        showToast("success", "File Siap", `${selectedFiles.length} file dipilih.`);
+        showToast("success", "File Berhasil Dimuat", `${selectedFiles.length} file dipilih.`);
       }
 
-      /* UNIVERSAL CONVERSION ENGINE */
+      /* CONVERSION EXECUTION */
       async function executeConversion() {
         if (selectedFiles.length === 0) return;
 
         const config = toolConfigs[currentTool];
-        showToast("info", "Memproses Konversi", `Mengkonversi file ke format ${config.ext.toUpperCase()}...`);
+        showToast("info", "Sedang Memproses", `Mengkonversi ke format ${config.ext.toUpperCase()}...`);
 
         try {
           if (currentTool.endsWith('-pdf') || currentTool === 'file-to-pdf') {
-            // PDF Generation Logic
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
 
@@ -457,30 +475,28 @@
                 doc.text(textContent.substring(0, 2500), 15, 20);
               }
             }
-            doc.save(`hasil_konversi_${Date.now()}${config.ext}`);
+            doc.save(`konversi_${Date.now()}${config.ext}`);
 
           } else if (currentTool.endsWith('-word') || currentTool === 'file-to-word') {
-            // Word Output Generator
-            let textOutput = `HASIL KONVERSI DOKUMEN WORD\nTanggal: ${new Date().toLocaleDateString()}\n\n`;
+            let textOutput = `DOKUMEN HASIL KONVERSI WORD\nTanggal: ${new Date().toLocaleDateString()}\n\n`;
             for (let file of selectedFiles) {
               textOutput += `=== NAMA FILE: ${file.name} ===\n`;
               textOutput += await readFileAsText(file) + "\n\n";
             }
-            downloadBlob(textOutput, `hasil_konversi_${Date.now()}.docx`, 'application/msword');
+            downloadBlob(textOutput, `konversi_${Date.now()}.docx`, 'application/msword');
 
           } else if (currentTool.endsWith('-excel') || currentTool === 'file-to-excel') {
-            // Excel CSV/Spreadsheet Generator
             let csvOutput = "Nama File, Ukuran (KB), Status\n";
             selectedFiles.forEach(f => {
               csvOutput += `"${f.name}", "${(f.size/1024).toFixed(2)} KB", "Terkonversi"\n`;
             });
-            downloadBlob(csvOutput, `hasil_konversi_${Date.now()}.xlsx`, 'application/vnd.ms-excel');
+            downloadBlob(csvOutput, `konversi_${Date.now()}.xlsx`, 'application/vnd.ms-excel');
           }
 
-          showToast("success", "Berhasil Konversi", `File ${config.ext.toUpperCase()} telah terunduh.`);
+          showToast("success", "Konversi Selesai", `File ${config.ext.toUpperCase()} terunduh.`);
         } catch (err) {
           console.error(err);
-          showToast("error", "Gagal Konversi", "Terjadi kesalahan saat memproses file.");
+          showToast("error", "Gagal Memproses", "Terjadi kesalahan saat konversi file.");
         }
       }
 
